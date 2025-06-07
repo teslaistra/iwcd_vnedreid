@@ -5,6 +5,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:lamoda_seller/application/application_store/application_store.dart';
 import 'package:lamoda_seller/application/router/app_router.dart';
 import 'package:lamoda_seller/features/presentation/home_page/widgets/brand_card.dart';
+import 'package:lamoda_seller/features/presentation/home_page/widgets/item_card.dart';
 import 'package:lamoda_seller/features/presentation/home_page/widgets/moderation_alert.dart';
 import 'package:lamoda_seller/features/ui_kit/la_blur_container/la_blur_container.dart';
 import 'package:lamoda_seller/features/ui_kit/la_button/la_button.dart';
@@ -12,9 +13,16 @@ import 'package:lamoda_seller/features/ui_kit/la_chip/la_chip.dart';
 import 'package:lamoda_seller/features/ui_kit/la_chip_button/la_chip_button.dart';
 import 'package:provider/provider.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+
+  int currentPage = 0;
   @override
   Widget build(BuildContext context) {
     final store = context.read<ApplicationStore>();
@@ -79,7 +87,7 @@ class HomeScreen extends StatelessWidget {
                               child: Row(
                                 children: [
                                   Text(
-                                    'Ваши активы',
+                                    'Ваш кабинет',
                                     style: TextStyle(
                                       fontSize: 22,
                                       fontWeight: FontWeight.w600,
@@ -101,19 +109,24 @@ class HomeScreen extends StatelessWidget {
                                 child: CupertinoSlidingSegmentedControl<int>(
                                   backgroundColor: Color(0xFFE7E8E9),
                                   thumbColor: Colors.white,
-                                  onValueChanged: (int? value) {},
-                                  groupValue: 0,
-                                  children: const <int, Widget>{
+                                  onValueChanged: (int? value) {setState(() {
+                                    currentPage = value ?? currentPage;
+                                  });},
+                                  groupValue: currentPage,
+                                  children: <int, Widget>{
                                     0: Padding(
                                       padding: EdgeInsets.symmetric(
                                         horizontal: 20,
                                       ),
                                       child: Text(
                                         'Бренды',
-                                        style: TextStyle(
+                                        style: currentPage == 0 ? TextStyle(
                                           fontSize: 15,
                                           fontWeight: FontWeight.w600,
-                                        ),
+                                        ) : TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w400,
+                                        )
                                       ),
                                     ),
                                     1: Padding(
@@ -122,10 +135,13 @@ class HomeScreen extends StatelessWidget {
                                       ),
                                       child: Text(
                                         'Товары',
-                                        style: TextStyle(
+                                        style: currentPage == 1 ? TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w600,
+                                        ) : TextStyle(
                                           fontSize: 15,
                                           fontWeight: FontWeight.w400,
-                                        ),
+                                        )
                                       ),
                                     ),
                                   },
@@ -152,7 +168,8 @@ class HomeScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      switch (store.homePageHasBrands) {
+                      switch (currentPage) {
+                      0 => switch (store.homePageHasBrands) {
                         true => SliverList(
                           delegate: SliverChildListDelegate([
                             SizedBox(height: 24),
@@ -249,6 +266,92 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                       },
+                      1 => switch (store.homePageHasItems) {
+                        true => SliverPadding(
+                          padding: EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 100),
+                          sliver: SliverGrid(
+                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, childAspectRatio: 4/5, crossAxisSpacing: 16, mainAxisSpacing: 16),
+                            delegate: SliverChildListDelegate([
+                              ItemCard(
+                                title: 'Брюки',
+                                count: 1000,
+                                image: Image.asset(
+                                  'assets/home_asset_1.png',
+                                  height: 90,
+                                ),
+                                badge: LaChip(child: Text('На модерации')),
+                              ),
+                              ItemCard(
+                                title: 'Кеды',
+                                count: 1000,
+                                image: Image.asset(
+                                  'assets/home_asset_2.png',
+                                  height: 90,
+                                ),
+                                badge: LaChip(child: Text('На модерации')),
+                              ),
+                              ItemCard(
+                                title: 'Спортивные',
+                                count: 1000,
+                                image: Image.asset(
+                                  'assets/home_asset_3.png',
+                                  height: 90,
+                                ),
+                                badge: LaChip(child: Text('На модерации')),
+                              ),
+                              ItemCard(
+                                title: 'Женские',
+                                count: 1000,
+                                image: Image.asset(
+                                  'assets/home_asset_4.png',
+                                  height: 90,
+                                ),
+                                badge: LaChip(child: Text('На модерации')),
+                              ),
+                            ]),
+                          ),
+                        ),
+                        false => SliverFillRemaining(
+                          hasScrollBody: false,
+                          child: Center(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 24),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Image.asset(
+                                    'assets/home_empty.png',
+                                    height: 140,
+                                  ),
+                                  SizedBox(height: 34),
+                                  Text(
+                                    'Добавьте свой товар',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 27,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  SizedBox(height: 12),
+                                  Text(
+                                    'Чтобы начать продажи, загрузите основную информацию о товаре',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w400,
+                                      color: Color(0xA3333333),
+                                    ),
+                                  ),
+                                  SizedBox(height: 60),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      },
+                      _ => throw UnimplementedError()
+                      }
                     ],
                   ),
                 ),
@@ -260,8 +363,8 @@ class HomeScreen extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: LaButton(
-                          onTap: () => context.router.push(AddBrandRoute()),
-                          child: Text('Добавить бренд'),
+                          onTap: () => currentPage == 0 ? context.router.push(AddBrandRoute()) : context.router.push(AddItemRoute()),
+                          child: currentPage == 0 ? Text('Добавить бренд') : Text('Добавить товар'),
                         ),
                       ),
                     ),

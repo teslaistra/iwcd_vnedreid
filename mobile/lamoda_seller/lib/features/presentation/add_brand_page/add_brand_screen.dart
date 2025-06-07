@@ -1,11 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:lamoda_seller/application/application_store/application_store.dart';
 import 'package:lamoda_seller/application/router/app_router.dart';
 import 'package:lamoda_seller/features/ui_kit/la_blur_container/la_blur_container.dart';
 import 'package:lamoda_seller/features/ui_kit/la_button/la_button.dart';
 import 'package:lamoda_seller/features/ui_kit/la_page_indicator/la_page_indicator.dart';
 import 'package:lamoda_seller/features/ui_kit/la_text_field/la_text_field.dart';
 import 'package:lamoda_seller/features/ui_kit/layouts/la_subpage_layout/la_subpage_layout.dart';
+import 'package:provider/provider.dart';
 
 class AddBrandScreen extends StatefulWidget {
   const AddBrandScreen({super.key});
@@ -50,6 +52,8 @@ class _AddBrandScreenState extends State<AddBrandScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final store = context.read<ApplicationStore>();
+
     cards = [
       LaSubpageLayout(
         title: const Text('Информация о '),
@@ -185,7 +189,10 @@ class _AddBrandScreenState extends State<AddBrandScreen> {
                       spacing: 16,
                       children: [
                         LaButton(
-                          onTap: isEnd ? () => context.router.replace(SuccessSentRoute()) : _nextPage ,
+                          onTap: isEnd ? () {
+                            context.router.replace(SuccessSentRoute());
+                            store.homePageHasBrands = true;
+                          } : _nextPage ,
                           child: isEnd ? Text( 'Отправить') : Text( 'Далее'),
                         ),
                         if (!isStart) LaButton(

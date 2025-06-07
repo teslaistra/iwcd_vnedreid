@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:lamoda_seller/features/presentation/add_brand_page/add_brand_page.dart';
+import 'package:lamoda_seller/features/presentation/add_item_page/add_item_page.dart';
 import 'package:lamoda_seller/features/presentation/home_page/home_page.dart';
 import 'package:lamoda_seller/features/presentation/onboarding_page/onboarding_page.dart';
 import 'package:lamoda_seller/features/presentation/register_page/register_page.dart';
@@ -14,11 +15,12 @@ class AppRouter extends RootStackRouter {
 
   @override
   List<AutoRoute> get routes => [
-    AutoRoute(page: WelcomeRoute.page),
+    AutoRoute(page: WelcomeRoute.page, initial: true),
     AutoRoute(page: OnboardingRoute.page),
     AutoRoute(page: RegisterRoute.page),
-    AutoRoute(page: HomeRoute.page, initial: true),
+    AutoRoute(page: HomeRoute.page),
     AutoRoute(page: AddBrandRoute.page),
-    AutoRoute(page: SuccessSentRoute.page)
+    AutoRoute(page: SuccessSentRoute.page),
+    AutoRoute(page: AddItemRoute.page)
   ];
 }

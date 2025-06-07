@@ -61,7 +61,6 @@ class SuccessSentScreen extends StatelessWidget {
                   child:  LaButton(
                     onTap: () {
                       context.router.popUntilRouteWithName(HomeRoute.name);
-                      store.homePageHasBrands = true;
                     },
                     child: Text('На главную'),
                   ),

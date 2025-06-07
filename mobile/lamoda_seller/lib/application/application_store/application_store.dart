@@ -10,6 +10,9 @@ abstract class _Store with Store {
   bool homePageHasBrands = false;
 
   @observable
+  bool homePageHasItems = false;
+
+  @observable
   bool homePageModerationAlert = true;
 
   _Store() {}
