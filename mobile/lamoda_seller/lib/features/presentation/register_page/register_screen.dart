@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:lamoda_seller/features/presentation/register_page/register_page_theme.dart';
 import 'package:lamoda_seller/features/ui_kit/la_blur_container/la_blur_container.dart';
 import 'package:lamoda_seller/features/ui_kit/la_button/la_button.dart';
+import 'package:lamoda_seller/features/ui_kit/la_page_indicator/la_page_indicator.dart';
+import 'package:lamoda_seller/features/ui_kit/la_text_field/la_text_field.dart';
+import 'package:lamoda_seller/features/ui_kit/layouts/la_subpage_layout/la_subpage_layout.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -14,12 +16,69 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
 
+  bool get isStart => _currentPage == 0;
   bool get isEnd => _currentPage+1 == cards.length;
 
   // Тестовые данные для карточек
   final List<Widget> cards = [
-    SizedBox(),
-    SizedBox()
+    LaSubpageLayout(
+      title: const Text('Введите '),
+      titleChips: const [Text('ФИО', style: TextStyle(color: Color(0xA3333333)))],
+      text: const Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: 14,),
+          Text(
+            'Введите основные данные',
+          ),
+          SizedBox(height: 24,),
+          LaTextField(
+            hintText: 'Введите ФИО',
+          ),
+          SizedBox(height: 16,),
+          LaTextField(
+            hintText: 'Введите почту',
+          ),
+          SizedBox(height: 16,),
+          LaTextField(
+            hintText: 'Введите пароль',
+          )
+        ],
+      ),
+      image: Align(
+        alignment: Alignment.bottomCenter,
+        child: Image.asset('assets/lamoda_card.png'),
+      ),
+    ),
+    const LaSubpageLayout(
+      title: Text('Информация о '),
+      titleChips: [
+        Text('компании', style: TextStyle(color: Color(0xA3333333))),
+      ],
+        text: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 14,),
+            Text(
+              'Введите основные данные',
+            ),
+            SizedBox(height: 24,),
+            LaTextField(
+              hintText: 'Выберите форму юр. лица',
+            ),
+            SizedBox(height: 16,),
+            LaTextField(
+              hintText: 'Наименование компании',
+            ),
+            SizedBox(height: 16,),
+            LaTextField(
+              hintText: 'Модель сотрудничества',
+            ),
+            SizedBox(height: 16,),
+            Text('Нажимая кнопку далее я даю согласие Купишуз на обработку персональных данных: https://www.lamoda.ru/about personaldata/')
+          ],
+        )
+    ),
   ];
 
   void _nextPage() {
@@ -51,8 +110,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context).registerPageThemeExtension;
-
     return Scaffold(
       body: Stack(
         children: [
@@ -62,29 +119,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 SizedBox(height: 20,),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                    children: List.generate(
-                        cards.length,
-                            (i) => Expanded(
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 2),
-                              child:  AnimatedContainer(
-                                duration: Duration(milliseconds: 200),
-                                height: 4,
-                                decoration: BoxDecoration(
-                                    color:  _currentPage >= i ? theme.pageIndicatorEnabledColor : theme.pageIndicatorDisabledColor,
-                                    borderRadius: BorderRadius.circular(16)
-                                ),
-                              ),
-                            )
-                        )
-                    ),
-                  ),
-                ),
-                SizedBox(height: 8,),
-                Text('${_currentPage+1} из ${cards.length}', style: TextStyle(color: theme.pageIndicatorTextColor, fontSize: 15),),
+                LaPageIndicator(currentValue: _currentPage, size: cards.length),
                 Expanded(
                   child: PageView.builder(
                     controller: _pageController,
@@ -93,7 +128,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     },
                     itemCount: cards.length,
                     itemBuilder: (context, index) {
-                      return cards[index];
+                      return Padding(
+                        padding: EdgeInsets.all(24),
+                        child: cards[index],
+                      );
                     },
                   ),
                 )
@@ -114,9 +152,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       children: [
                         LaButton(
                           onTap: _nextPage,
-                          child: Text(isEnd ? 'Начать регистрацию' : 'Далее'),
+                          child: Text( 'Далее'),
                         ),
-                        LaButton(
+                        if (!isStart) LaButton(
                           onTap: _previousPage,
                           child: Text('Назад'),
                           primary: false,

@@ -22,12 +22,30 @@ class LaClassicColors implements AppColors {
   Color get welcomeText => Color(0xA3333333);
 
   @override
-  Color get pageIndicatorDisabled => Color(0xFFDCDCDD);
+  Color get laPageIndicatorDisabled => Color(0xFFDCDCDD);
 
   @override
-  Color get pageIndicatorEnabled => Color(0xFF333333);
+  Color get laPageIndicatorEnabled => Color(0xFF333333);
 
   @override
-  Color get pageIndicatorText => Color(0x99333333);
+  Color get laPageIndicatorText => Color(0x99333333);
+
+  @override
+  Color get laTextFieldBackground => Color(0x14333333);
+
+  @override
+  Color get laTextFieldBorder => Color(0x00000000);
+
+  @override
+  Color get laTextFieldDisabledBackground => Color(0x3D333333);
+
+  @override
+  Color get laTextFieldDisabledBorder => Color(0x00000000);
+
+  @override
+  Color get laTextFieldHint => Color(0x7A333333);
+
+  @override
+  Color get laTextFieldText => Color(0xFF333333);
 
 }
