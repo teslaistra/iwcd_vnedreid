@@ -16,11 +16,16 @@ class LaBlurContainer extends StatelessWidget {
     final theme =
     Theme.of(context).laBlurContainerThemeExtension.copyWithDecoration(decoration);
 
-    return Container(
-        color: theme.blurColor,
-        child: child
-    ).frosted(
-      blur: theme.blurStrength
+    return ClipRRect(
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: theme.blurStrength, sigmaY: theme.blurStrength),
+        child: Container(
+            decoration: BoxDecoration(
+              color: theme.blurColor,
+            ),
+            child: child
+        ),
+      ),
     );
   }
 }

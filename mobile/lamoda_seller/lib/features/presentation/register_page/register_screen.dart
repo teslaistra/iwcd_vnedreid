@@ -1,4 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:lamoda_seller/application/router/app_router.dart';
 import 'package:lamoda_seller/features/ui_kit/la_blur_container/la_blur_container.dart';
 import 'package:lamoda_seller/features/ui_kit/la_button/la_button.dart';
 import 'package:lamoda_seller/features/ui_kit/la_page_indicator/la_page_indicator.dart';
@@ -87,9 +89,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
       );
-    } else {
-      // Завершение онбординга
-      Navigator.pushReplacementNamed(context, '/home');
     }
   }
 
@@ -151,7 +150,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       spacing: 16,
                       children: [
                         LaButton(
-                          onTap: _nextPage,
+                          onTap: isEnd ? () => context.router.replace(HomeRoute()) : _nextPage ,
                           child: Text( 'Далее'),
                         ),
                         if (!isStart) LaButton(

@@ -48,4 +48,22 @@ class LaClassicColors implements AppColors {
   @override
   Color get laTextFieldText => Color(0xFF333333);
 
+  @override
+  Color get laChipButtonDisabled =>  Color(0xFFFFFFFF);
+
+  @override
+  Color get laChipButtonDisabledText => Color(0xFF333333);
+
+  @override
+  Color get laChipButtonEnabled => Color(0xFF333333);
+
+  @override
+  Color get laChipButtonEnabledText => Color(0xFFFFFFFF);
+
+  @override
+  Color get laChipEnabled => Color(0xFFF2F3F5);
+
+  @override
+  Color get laChipText => Color(0xFF333333);
+
 }
