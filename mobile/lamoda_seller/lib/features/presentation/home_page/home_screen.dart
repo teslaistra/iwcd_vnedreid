@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:lamoda_seller/application/application_store/application_store.dart';
 import 'package:lamoda_seller/application/router/app_router.dart';
+import 'package:lamoda_seller/features/presentation/home_page/widgets/akcia_alert.dart';
 import 'package:lamoda_seller/features/presentation/home_page/widgets/brand_card.dart';
 import 'package:lamoda_seller/features/presentation/home_page/widgets/item_card.dart';
 import 'package:lamoda_seller/features/presentation/home_page/widgets/moderation_alert.dart';
@@ -102,6 +103,13 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                             SizedBox(height: 20),
+                            if (store.homePageAkciaAlert)
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 16),
+                                child: AkciaAlert(),
+                              ),
+                            if (store.homePageAkciaAlert)
+                              SizedBox(height: 20),
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 16),
                               child: SizedBox(
@@ -175,54 +183,66 @@ class _HomeScreenState extends State<HomeScreen> {
                             SizedBox(height: 24),
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 16),
-                              child: BrandCard(
-                                title: 'Бренд 2345',
-                                count: 1000,
-                                image: Image.asset(
-                                  'assets/home_asset_1.png',
-                                  height: 90,
+                              child: GestureDetector(
+                                onTap: () => context.router.push(BrandRoute()),
+                                child: BrandCard(
+                                  title: 'Бренд 2345',
+                                  count: 1000,
+                                  image: Image.asset(
+                                    'assets/home_asset_1.png',
+                                    height: 90,
+                                  ),
+                                  badge: LaChip(child: Text('На модерации')),
                                 ),
-                                badge: LaChip(child: Text('На модерации')),
                               ),
                             ),
                             SizedBox(height: 16),
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 16),
-                              child: BrandCard(
-                                title: 'Бренд 2345',
-                                count: 1000,
-                                image: Image.asset(
-                                  'assets/home_asset_2.png',
-                                  height: 90,
+                              child: GestureDetector(
+                                  onTap: () => context.router.push(BrandRoute()),
+                                child: BrandCard(
+                                  title: 'Бренд 2345',
+                                  count: 1000,
+                                  image: Image.asset(
+                                    'assets/home_asset_2.png',
+                                    height: 90,
+                                  ),
+                                  badge: LaChip(child: Text('На модерации')),
                                 ),
-                                badge: LaChip(child: Text('На модерации')),
-                              ),
+                              )
                             ),
                             SizedBox(height: 16),
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 16),
-                              child: BrandCard(
-                                title: 'Бренд 2345',
-                                count: 1000,
-                                image: Image.asset(
-                                  'assets/home_asset_3.png',
-                                  height: 90,
+                              child: GestureDetector(
+                                onTap: () => context.router.push(BrandRoute()),
+                                child: BrandCard(
+                                  title: 'Бренд 2345',
+                                  count: 1000,
+                                  image: Image.asset(
+                                    'assets/home_asset_3.png',
+                                    height: 90,
+                                  ),
+                                  badge: LaChip(child: Text('На модерации')),
                                 ),
-                                badge: LaChip(child: Text('На модерации')),
-                              ),
+                              )
                             ),
                             SizedBox(height: 16),
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 16),
-                              child: BrandCard(
-                                title: 'Бренд 2345',
-                                count: 1000,
-                                image: Image.asset(
-                                  'assets/home_asset_4.png',
-                                  height: 90,
+                              child: GestureDetector(
+                                  onTap: () => context.router.push(BrandRoute()),
+                                child:  BrandCard(
+                                  title: 'Бренд 2345',
+                                  count: 1000,
+                                  image: Image.asset(
+                                    'assets/home_asset_4.png',
+                                    height: 90,
+                                  ),
+                                  badge: LaChip(child: Text('На модерации')),
                                 ),
-                                badge: LaChip(child: Text('На модерации')),
-                              ),
+                              )
                             ),
                             SizedBox(height: 100),
                           ]),
@@ -272,42 +292,54 @@ class _HomeScreenState extends State<HomeScreen> {
                           sliver: SliverGrid(
                             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, childAspectRatio: 4/5, crossAxisSpacing: 16, mainAxisSpacing: 16),
                             delegate: SliverChildListDelegate([
-                              ItemCard(
-                                title: 'Брюки',
-                                count: 1000,
-                                image: Image.asset(
-                                  'assets/home_asset_1.png',
-                                  height: 90,
+                              GestureDetector(
+                                onTap: () => context.router.push(ItemRoute()),
+                                child:  ItemCard(
+                                  title: 'Брюки',
+                                  count: 1000,
+                                  image: Image.asset(
+                                    'assets/home_asset_1.png',
+                                    height: 90,
+                                  ),
+                                  badge: LaChip(child: Text('На модерации')),
                                 ),
-                                badge: LaChip(child: Text('На модерации')),
                               ),
-                              ItemCard(
-                                title: 'Кеды',
-                                count: 1000,
-                                image: Image.asset(
-                                  'assets/home_asset_2.png',
-                                  height: 90,
+                              GestureDetector(
+                                onTap: () => context.router.push(ItemRoute()),
+                                child: ItemCard(
+                                  title: 'Кеды',
+                                  count: 1000,
+                                  image: Image.asset(
+                                    'assets/home_asset_2.png',
+                                    height: 90,
+                                  ),
+                                  badge: LaChip(child: Text('На модерации')),
                                 ),
-                                badge: LaChip(child: Text('На модерации')),
                               ),
-                              ItemCard(
-                                title: 'Спортивные',
-                                count: 1000,
-                                image: Image.asset(
-                                  'assets/home_asset_3.png',
-                                  height: 90,
+                              GestureDetector(
+                                onTap: () => context.router.push(ItemRoute()),
+                                child: ItemCard(
+                                  title: 'Спортивные',
+                                  count: 1000,
+                                  image: Image.asset(
+                                    'assets/home_asset_3.png',
+                                    height: 90,
+                                  ),
+                                  badge: LaChip(child: Text('На модерации')),
                                 ),
-                                badge: LaChip(child: Text('На модерации')),
                               ),
-                              ItemCard(
-                                title: 'Женские',
-                                count: 1000,
-                                image: Image.asset(
-                                  'assets/home_asset_4.png',
-                                  height: 90,
+                              GestureDetector(
+                                  onTap: () => context.router.push(ItemRoute()),
+                                child: ItemCard(
+                                  title: 'Женские',
+                                  count: 1000,
+                                  image: Image.asset(
+                                    'assets/home_asset_4.png',
+                                    height: 90,
+                                  ),
+                                  badge: LaChip(child: Text('На модерации')),
                                 ),
-                                badge: LaChip(child: Text('На модерации')),
-                              ),
+                              )
                             ]),
                           ),
                         ),

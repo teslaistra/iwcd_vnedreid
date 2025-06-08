@@ -240,7 +240,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
                         onTap: () => context.router.pop(),
                         child: Icon(Icons.arrow_back_ios, size: 24, color: Color(0xFF333333),),
                       ),
-                      Text('Добавить бренд', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600, color: Color(0xFF333333)),),
+                      Text('Добавить товар', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600, color: Color(0xFF333333)),),
                       Icon(Icons.info_outline, size: 24, color: Color(0xFF333333),)
                     ],
                   ),

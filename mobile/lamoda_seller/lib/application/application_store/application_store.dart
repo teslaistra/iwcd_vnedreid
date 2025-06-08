@@ -15,5 +15,8 @@ abstract class _Store with Store {
   @observable
   bool homePageModerationAlert = true;
 
+  @computed
+  bool get homePageAkciaAlert => !homePageModerationAlert;
+
   _Store() {}
 }
