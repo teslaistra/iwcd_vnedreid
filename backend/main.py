@@ -1,39 +1,46 @@
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
 import os
-import sqlite3
+import asyncio
+from fastapi.middleware.cors import CORSMiddleware
 
-DB_PATH = os.environ.get("APP_DB", "users.db")
+from chats import chat_router, initialize_search_index_async
 
-conn = sqlite3.connect(DB_PATH, check_same_thread=False)
-conn.execute(
-    "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, password TEXT)"
+# --- FastAPI app ---
+app = FastAPI(
+    title="Backend API",
+    description="Backend с авторизацией и AI Chat API",
+    version="1.0.0",
 )
 
-DEFAULT_USERNAME = os.environ.get("APP_USERNAME", "admin")
-DEFAULT_PASSWORD = os.environ.get("APP_PASSWORD", "secret")
-cur = conn.execute("SELECT id FROM users WHERE username=?", (DEFAULT_USERNAME,))
-if cur.fetchone() is None:
-    conn.execute("INSERT INTO users (username, password) VALUES (?, ?)", (DEFAULT_USERNAME, DEFAULT_PASSWORD))
-    conn.commit()
+origins = [
+    "http://localhost:3000",   # если фронт на React/Next локально
+    "*",
+    "https://your-production-frontend.com",  # сюда добавь домен прод фронта
+]
 
-app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Можно поставить ["*"] чтобы разрешить всем — но осторожно!
+    allow_credentials=True,
+    allow_methods=["*"],    # Разрешить все HTTP-методы (GET, POST и т.п.)
+    allow_headers=["*"],    # Разрешить любые заголовки
+)
 
-class Login(BaseModel):
-    username: str
-    password: str
+@app.on_event("startup")
+async def startup_event():
+    # Запускаем initialize_search_index_async в background
+    asyncio.create_task(initialize_search_index_async())
 
-@app.post("/login")
-async def login(data: Login):
-    cur = conn.execute(
-        "SELECT id FROM users WHERE username=? AND password=?",
-        (data.username, data.password),
-    )
-    row = cur.fetchone()
-    if row:
-        return {"success": True, "id": row[0]}
-    raise HTTPException(status_code=401, detail="Invalid credentials")
-
-@app.get("/")
+# --- Корневая ручка ---
+@app.get("/", summary="Проверка работы API")
 async def root():
-    return {"message": "Backend is running"}
+    return {"message": "Backend is running."}
+
+# # --- Подключаем чат router ---
+app.include_router(chat_router)
+
+PORT = int(os.environ.get("PORT", "8080"))
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="0.0.0.0", port=PORT)
