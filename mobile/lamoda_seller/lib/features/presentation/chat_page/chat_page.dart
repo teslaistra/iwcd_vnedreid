@@ -8,6 +8,6 @@ class ChatPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ChatScreen(url: 'http://chat.lamoda.itatmisis.ru');
+    return const ChatScreen(url: 'https://chat.lamoda.itatmisis.ru');
   }
 }
