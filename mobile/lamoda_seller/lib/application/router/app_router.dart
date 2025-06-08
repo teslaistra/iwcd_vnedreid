@@ -5,6 +5,7 @@ import 'package:lamoda_seller/features/presentation/akcia_list_page/akcia_list_p
 import 'package:lamoda_seller/features/presentation/akcia_page/akcia_page.dart';
 import 'package:lamoda_seller/features/presentation/akcia_picker_page/akcia_picker_page.dart';
 import 'package:lamoda_seller/features/presentation/brand_page/brand_page.dart';
+import 'package:lamoda_seller/features/presentation/chat_page/chat_page.dart';
 import 'package:lamoda_seller/features/presentation/home_page/home_page.dart';
 import 'package:lamoda_seller/features/presentation/item_page/item_page.dart';
 import 'package:lamoda_seller/features/presentation/notifications_page/notifications_page.dart';
@@ -37,6 +38,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: AkciaPickerRoute.page),
     AutoRoute(page: ProfileRoute.page),
     AutoRoute(page: ProfileCommonRoute.page),
-    AutoRoute(page: NotificationsRoute.page)
+    AutoRoute(page: NotificationsRoute.page),
+    AutoRoute(page: ChatRoute.page),
   ];
 }

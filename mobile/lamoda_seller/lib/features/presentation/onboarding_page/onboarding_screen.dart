@@ -26,7 +26,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       title: const Text('Lamoda '),
       titleChips: const [Text('Seller', style: TextStyle(color: Color(0xFFA5D40A)))],
       text: const Text(
-        'Дата до которой клиент обещает оплатить + сумма оплаты (сумме просроченной задолженности + 5 дней с учетом штрафо и неустоек и процентов) автоматически должна подставляться',
+        'Продавайте легко и быстро! Lamoda помогает находить новых покупателей, а мы берём на себя хранение, доставку и поддержку ваших продаж.',
       ),
       image: Align(
         alignment: Alignment.bottomRight,
@@ -41,7 +41,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         Text('?'),
       ],
       text: const Text(
-        'Дата до которой клиент обещает оплатить + сумма оплаты (сумме просроченной задолженности + 5 дней с учетом штрафо и неустоек и процентов) автоматически должна подставляться',
+        '''
+• 4 млн постоянных клиентов
+• 17 млн посещений в день
+• 200+ городов с быстрой доставкой
+• Прозрачные выплаты каждую неделю
+• Бесплатная аналитика по продажам''',
       ),
       image: Align(
         alignment: Alignment.bottomRight,
@@ -55,7 +60,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         Text('подготовить', style: TextStyle(color: Color(0xFFF93B00))),
         Text('?'),
       ],
-      text: const Text('Отслеживайте статистику и оптимизируйте ваш бизнес'),
+      text: const Text('''
+Для старта вам понадобятся:
+• 50+ артикулов товара
+• Этикетки по стандартам РФ
+• Сертификат или отказное письмо
+• Статус юрлица + право на продажу ТЗ
+• Возможность работать через ЭДО'''),
       image: Align(
         alignment: Alignment.bottomRight,
         child: Image.asset('assets/onboarding_3.png'),

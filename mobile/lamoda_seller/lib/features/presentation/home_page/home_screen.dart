@@ -55,6 +55,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                       height: 32,
                                       width: 32,
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(24),
+                                        child: Image.asset(
+                                          'assets/ilya.png',
+                                          height: 32,
+                                        ),
+                                      ),
                                     ),
                                     SizedBox(width: 12),
                                     Text(

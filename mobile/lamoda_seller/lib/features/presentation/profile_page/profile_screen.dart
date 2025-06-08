@@ -248,6 +248,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                             ),)
                                           ],
                                         ),
+                                      ),
+                                      SizedBox(height: 24,),
+                                      GestureDetector(
+                                        onTap: () => context.router.push(ChatRoute()),
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              width: 48,
+                                              height: 48,
+                                              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(16)),
+                                              child: Center(
+                                                child: Icon(Icons.chat_outlined, size: 28,),
+                                              ),
+                                            ),
+                                            SizedBox(width: 8,),
+                                            Text('Онлайн-чат', style: TextStyle(
+                                              color: Color(0xFF0F0F0F),
+                                              fontSize: 17,
+                                              fontWeight: FontWeight.w400,
+                                            ),)
+                                          ],
+                                        ),
                                       )
                                     ],
                                   ),
