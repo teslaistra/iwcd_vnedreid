@@ -12,8 +12,8 @@ abstract class _Store with Store {
   @observable
   bool homePageHasItems = false;
 
-  @observable
-  bool homePageModerationAlert = true;
+  @computed
+  bool get homePageModerationAlert => !(homePageHasBrands && homePageHasItems);
 
   @computed
   bool get homePageAkciaAlert => !homePageModerationAlert;

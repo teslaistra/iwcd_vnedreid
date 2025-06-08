@@ -2,18 +2,19 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lamoda_seller/application/application_store/application_store.dart';
+import 'package:lamoda_seller/application/router/app_router.dart';
 import 'package:lamoda_seller/features/ui_kit/la_blur_container/la_blur_container.dart';
 import 'package:lamoda_seller/features/ui_kit/la_button/la_button.dart';
 import 'package:provider/provider.dart';
 
-class ItemScreen extends StatefulWidget {
-  const ItemScreen({super.key});
+class AkciaScreen extends StatefulWidget {
+  const AkciaScreen({super.key});
 
   @override
-  State<ItemScreen> createState() => _ItemScreenState();
+  State<AkciaScreen> createState() => _AkciaScreenState();
 }
 
-class _ItemScreenState extends State<ItemScreen> {
+class _AkciaScreenState extends State<AkciaScreen> {
 
   int currentPage = 0;
 
@@ -40,7 +41,7 @@ class _ItemScreenState extends State<ItemScreen> {
                         onTap: () => context.router.pop(),
                         child: Icon(Icons.arrow_back_ios, size: 24, color: Color(0xFF333333),),
                       ),
-                      Text('Товар', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600, color: Color(0xFF333333)),),
+                      Text('Акция', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600, color: Color(0xFF333333)),),
                       SizedBox(width: 24,)
                     ],
                   ),
@@ -50,30 +51,15 @@ class _ItemScreenState extends State<ItemScreen> {
                     slivers: [
                       SliverToBoxAdapter(
                         child: SizedBox(
-                          height: 220,
+                          height: 130,
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              SizedBox(height: 20,),
-                              Container(
-                                height: 70,
-                                width: 70,
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFFFFFFF),
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                child: Image.asset(
-                                  'assets/home_asset_3.png',
-                                  height: 90,
-                                ),
-                              ),
-                              SizedBox(width: 20,),
-                              SizedBox(height: 12,),
-                              Text('Брюки', maxLines: 1, style: TextStyle(color: Color(0xFF333333), fontSize: 19, fontWeight: FontWeight.w600),),
+                              Text('Акция "Брюки всем"', maxLines: 1, style: TextStyle(color: Color(0xFF333333), fontSize: 19, fontWeight: FontWeight.w600),),
                               SizedBox(height: 4,),
-                              Text('1000 штук', style: TextStyle(color: Color(0x8C333333), fontSize: 13, fontWeight: FontWeight.w400)),
+                              Text('21 февраля - 31 мая', style: TextStyle(color: Color(0x8C333333), fontSize: 13, fontWeight: FontWeight.w400)),
                               SizedBox(height: 20,),
 
                               Padding(
@@ -142,33 +128,13 @@ class _ItemScreenState extends State<ItemScreen> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Text('Наименование', style: TextStyle(color: Color(0x8C333333), fontSize: 14, fontWeight: FontWeight.w400)),
+                                      Text('Тип товара на который распространяется', style: TextStyle(color: Color(0x8C333333), fontSize: 14, fontWeight: FontWeight.w400)),
                                       SizedBox(height: 4,),
-                                      Text('Брюки', maxLines: 1, style: TextStyle(color: Color(0xFF333333), fontSize: 16, fontWeight: FontWeight.w400),),
+                                      Text('Брюки, Штаны', maxLines: 1, style: TextStyle(color: Color(0xFF333333), fontSize: 16, fontWeight: FontWeight.w400),),
                                       SizedBox(height: 12,),
-                                      Text('Артикул товара', style: TextStyle(color: Color(0x8C333333), fontSize: 14, fontWeight: FontWeight.w400)),
+                                      Text('Количество процентов скидки', style: TextStyle(color: Color(0x8C333333), fontSize: 14, fontWeight: FontWeight.w400)),
                                       SizedBox(height: 4,),
-                                      Text('112345', maxLines: 1, style: TextStyle(color: Color(0xFF333333), fontSize: 16, fontWeight: FontWeight.w400),),
-                                      SizedBox(height: 12,),
-                                      Text('Размер / сетка', style: TextStyle(color: Color(0x8C333333), fontSize: 14, fontWeight: FontWeight.w400)),
-                                      SizedBox(height: 4,),
-                                      Text('XL', maxLines: 1, style: TextStyle(color: Color(0xFF333333), fontSize: 16, fontWeight: FontWeight.w400),),
-                                      SizedBox(height: 12,),
-                                      Text('Розничная цена', style: TextStyle(color: Color(0x8C333333), fontSize: 14, fontWeight: FontWeight.w400)),
-                                      SizedBox(height: 4,),
-                                      Text('12 000 ₽', maxLines: 1, style: TextStyle(color: Color(0xFF333333), fontSize: 16, fontWeight: FontWeight.w400),),
-                                      SizedBox(height: 12,),
-                                      Text('Цвета', style: TextStyle(color: Color(0x8C333333), fontSize: 14, fontWeight: FontWeight.w400)),
-                                      SizedBox(height: 4,),
-                                      Text('Синий', maxLines: 1, style: TextStyle(color: Color(0xFF333333), fontSize: 16, fontWeight: FontWeight.w400),),
-                                      SizedBox(height: 12,),
-                                      Text('Фотографии', style: TextStyle(color: Color(0x8C333333), fontSize: 14, fontWeight: FontWeight.w400)),
-                                      SizedBox(height: 4,),
-                                      Text('Shorts1.jpg', maxLines: 1, style: TextStyle(color: Color(0xFF333333), fontSize: 16, fontWeight: FontWeight.w400),),
-                                      SizedBox(height: 4,),
-                                      Text('Shorts2.jpg', maxLines: 1, style: TextStyle(color: Color(0xFF333333), fontSize: 16, fontWeight: FontWeight.w400),),
-                                      SizedBox(height: 4,),
-                                      Text('Shorts3.jpg', maxLines: 1, style: TextStyle(color: Color(0xFF333333), fontSize: 16, fontWeight: FontWeight.w400),),
+                                      Text('25%', maxLines: 1, style: TextStyle(color: Color(0xFF333333), fontSize: 16, fontWeight: FontWeight.w400),),
                                       SizedBox(height: 300,),
                                     ],
                                   ),
@@ -189,12 +155,6 @@ class _ItemScreenState extends State<ItemScreen> {
                                       Text('Рост продаж', style: TextStyle(color: Color(0x8C333333), fontSize: 14, fontWeight: FontWeight.w400)),
                                       SizedBox(height: 4,),
                                       Text('mc meqdqedew', maxLines: 1, style: TextStyle(color: Color(0xFF333333), fontSize: 16, fontWeight: FontWeight.w400),),
-                                      SizedBox(height: 12,),
-                                      Text('Топ акции', style: TextStyle(color: Color(0x8C333333), fontSize: 14, fontWeight: FontWeight.w400)),
-                                      SizedBox(height: 4,),
-                                      Text('1. Акция 112345', maxLines: 1, style: TextStyle(color: Color(0xFF333333), fontSize: 16, fontWeight: FontWeight.w400),),
-                                      SizedBox(height: 4,),
-                                      Text('2. Акция 112346', maxLines: 1, style: TextStyle(color: Color(0xFF333333), fontSize: 16, fontWeight: FontWeight.w400),),
                                       SizedBox(height: 300,),
                                     ],
                                   ),
@@ -224,10 +184,11 @@ class _ItemScreenState extends State<ItemScreen> {
                       spacing: 16,
                       children: [
                         LaButton(
-                          child: Text( 'Изменить цену'),
+                          onTap: () => context.router.push(AkciaPickerRoute()),
+                          child: Text( 'Добавить товары'),
                         ),
                         LaButton(
-                          child: Text('Скрыть'),
+                          child: Text('Удалить товары'),
                           primary: false,
                         )
                       ],

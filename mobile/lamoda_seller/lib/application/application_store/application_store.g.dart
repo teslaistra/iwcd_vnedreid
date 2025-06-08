@@ -9,6 +9,15 @@ part of 'application_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$ApplicationStore on _Store, Store {
+  Computed<bool>? _$homePageModerationAlertComputed;
+
+  @override
+  bool get homePageModerationAlert =>
+      (_$homePageModerationAlertComputed ??= Computed<bool>(
+            () => super.homePageModerationAlert,
+            name: '_Store.homePageModerationAlert',
+          ))
+          .value;
   Computed<bool>? _$homePageAkciaAlertComputed;
 
   @override
@@ -53,28 +62,6 @@ mixin _$ApplicationStore on _Store, Store {
     _$homePageHasItemsAtom.reportWrite(value, super.homePageHasItems, () {
       super.homePageHasItems = value;
     });
-  }
-
-  late final _$homePageModerationAlertAtom = Atom(
-    name: '_Store.homePageModerationAlert',
-    context: context,
-  );
-
-  @override
-  bool get homePageModerationAlert {
-    _$homePageModerationAlertAtom.reportRead();
-    return super.homePageModerationAlert;
-  }
-
-  @override
-  set homePageModerationAlert(bool value) {
-    _$homePageModerationAlertAtom.reportWrite(
-      value,
-      super.homePageModerationAlert,
-      () {
-        super.homePageModerationAlert = value;
-      },
-    );
   }
 
   @override

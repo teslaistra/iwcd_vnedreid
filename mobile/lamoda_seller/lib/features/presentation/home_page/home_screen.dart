@@ -44,41 +44,44 @@ class _HomeScreenState extends State<HomeScreen> {
                             SizedBox(height: 12),
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 16),
-                              child: Row(
-                                children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.grey,
-                                      borderRadius: BorderRadius.circular(24),
+                              child: GestureDetector(
+                                onTap: () => context.router.push(ProfileRoute()),
+                                child:  Row(
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey,
+                                        borderRadius: BorderRadius.circular(24),
+                                      ),
+                                      height: 32,
+                                      width: 32,
                                     ),
-                                    height: 32,
-                                    width: 32,
-                                  ),
-                                  SizedBox(width: 12),
-                                  Text(
-                                    'Тестовая компания',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w400,
+                                    SizedBox(width: 12),
+                                    Text(
+                                      'Тестовая компания',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.w400,
+                                      ),
                                     ),
-                                  ),
-                                  Spacer(),
-                                  Image.asset(
-                                    'assets/exit_icon.png',
-                                    width: 16,
-                                  ),
-                                ],
-                              ),
+                                    Spacer(),
+                                    Image.asset(
+                                      'assets/exit_icon.png',
+                                      width: 16,
+                                    ),
+                                  ],
+                                ),
+                              )
                             ),
                             SizedBox(height: 24),
                             if (store.homePageModerationAlert)
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 16),
                                 child: ModerationAlert(
-                                  onClose:
-                                      () =>
-                                          store.homePageModerationAlert = false,
+                                  onClose: () {}
+                                      // () =>
+                                      //     store.homePageModerationAlert = false,
                                 ),
                               ),
                             if (store.homePageModerationAlert)
@@ -106,7 +109,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             if (store.homePageAkciaAlert)
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 16),
-                                child: AkciaAlert(),
+                                child: GestureDetector(
+                                  onTap: () => context.router.push(AkciaListRoute()),
+                                  child: AkciaAlert(),
+                                ),
                               ),
                             if (store.homePageAkciaAlert)
                               SizedBox(height: 20),

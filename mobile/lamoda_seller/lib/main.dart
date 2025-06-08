@@ -27,6 +27,7 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp.router(
         title: 'Flutter Demo',
         routerConfig: router,
+        debugShowCheckedModeBanner: false,
         theme: LaClassicTheme().theme,
       )
     );

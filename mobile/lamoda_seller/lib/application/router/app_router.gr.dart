@@ -43,6 +43,54 @@ class AddItemRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [AkciaListPage]
+class AkciaListRoute extends PageRouteInfo<void> {
+  const AkciaListRoute({List<PageRouteInfo>? children})
+    : super(AkciaListRoute.name, initialChildren: children);
+
+  static const String name = 'AkciaListRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const AkciaListPage();
+    },
+  );
+}
+
+/// generated route for
+/// [AkciaPage]
+class AkciaRoute extends PageRouteInfo<void> {
+  const AkciaRoute({List<PageRouteInfo>? children})
+    : super(AkciaRoute.name, initialChildren: children);
+
+  static const String name = 'AkciaRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const AkciaPage();
+    },
+  );
+}
+
+/// generated route for
+/// [AkciaPickerPage]
+class AkciaPickerRoute extends PageRouteInfo<void> {
+  const AkciaPickerRoute({List<PageRouteInfo>? children})
+    : super(AkciaPickerRoute.name, initialChildren: children);
+
+  static const String name = 'AkciaPickerRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const AkciaPickerPage();
+    },
+  );
+}
+
+/// generated route for
 /// [BrandPage]
 class BrandRoute extends PageRouteInfo<void> {
   const BrandRoute({List<PageRouteInfo>? children})
@@ -91,6 +139,22 @@ class ItemRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [NotificationsPage]
+class NotificationsRoute extends PageRouteInfo<void> {
+  const NotificationsRoute({List<PageRouteInfo>? children})
+    : super(NotificationsRoute.name, initialChildren: children);
+
+  static const String name = 'NotificationsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const NotificationsPage();
+    },
+  );
+}
+
+/// generated route for
 /// [OnboardingPage]
 class OnboardingRoute extends PageRouteInfo<void> {
   const OnboardingRoute({List<PageRouteInfo>? children})
@@ -102,6 +166,38 @@ class OnboardingRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const OnboardingPage();
+    },
+  );
+}
+
+/// generated route for
+/// [ProfileCommonPage]
+class ProfileCommonRoute extends PageRouteInfo<void> {
+  const ProfileCommonRoute({List<PageRouteInfo>? children})
+    : super(ProfileCommonRoute.name, initialChildren: children);
+
+  static const String name = 'ProfileCommonRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ProfileCommonPage();
+    },
+  );
+}
+
+/// generated route for
+/// [ProfilePage]
+class ProfileRoute extends PageRouteInfo<void> {
+  const ProfileRoute({List<PageRouteInfo>? children})
+    : super(ProfileRoute.name, initialChildren: children);
+
+  static const String name = 'ProfileRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ProfilePage();
     },
   );
 }
