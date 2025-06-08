@@ -1,0 +1,55 @@
+.message-system {
+  background-color: var(--color-bg-system);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-size: 17px;
+  line-height: 24px;
+  font-family: var(--font-family);
+  color: var(--color-text-primary);
+}
+
+.message-user {
+  background-color: var(--color-bg-secondary);
+  border-radius: 24px;
+  padding: 10px 16px;
+  max-width: 80%;
+  font-size: 17px;
+  line-height: 22px;
+  font-family: var(--font-family);
+  align-self: flex-end;
+}
+
+.message-assistant {
+  background-color: var(--color-bg-primary);
+  border-radius: 24px 24px 24px 8px;
+  border: 2px solid var(--color-bg-secondary);
+  padding: 10px 16px;
+  max-width: 80%;
+  font-size: 17px;
+  line-height: 22px;
+  font-family: var(--font-family);
+  align-self: flex-start;
+}
+
+.message-info {
+  background-color: var(--color-bg-info);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-size: 17px;
+  line-height: 24px;
+  font-family: var(--font-family);
+  color: var(--color-text-primary);
+}
+
+.message-button {
+  background-color: var(--color-bg-secondary);
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: var(--font-family);
+  border: none;
+  cursor: pointer;
+}
